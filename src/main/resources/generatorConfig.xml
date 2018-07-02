@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <context id="logistics" targetRuntime="MyBatis3">
+        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"></plugin>  
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin> 
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"></plugin> 
+        <commentGenerator>
+            <property name="suppressDate" value="true" />
+            <property name="suppressAllComments" value="false" />
+        </commentGenerator>
+        <!-- specify how to connect to the target database -->
+        <jdbcConnection driverClass="org.postgresql.Driver"
+            connectionURL="jdbc:postgresql://localhost:5432/logistics" userId="postgres" password="123456">
+        </jdbcConnection>
+        <!-- specify target package and target project for generated Java model objects -->
+        <javaModelGenerator targetPackage="cn.edu.tju.tiei.logistics.model" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+        <!-- specify target package and target project for generated SQL map files -->
+        <sqlMapGenerator targetPackage="cn.edu.tju.tiei.logistics.mapping" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+        <!-- specify target package and target project for generated client interfaces and classes -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="cn.edu.tju.tiei.logistics.dao" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+        <!-- database tables -->
+        <table tableName="usr">
+        </table>
+        <table tableName="shipper">
+        </table>
+        <table tableName="waybill">
+        </table>
+        <table tableName="carrier">
+        </table>
+        <table tableName="bid">
+            <generatedKey column="id" identity="true" sqlStatement="JDBC" />
+        </table>
+    </context>
+</generatorConfiguration>
