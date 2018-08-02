@@ -17,6 +17,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import cn.edu.tju.tiei.logistics.model.Usr;
 import cn.edu.tju.tiei.logistics.service.IUsrService;
 
+
 @RestController
 public class UsrRestController {
 
@@ -28,7 +29,7 @@ public class UsrRestController {
 	 * @return
 	 */
     @RequestMapping(value = "/usrs", method = RequestMethod.GET)
-    public ResponseEntity<List<Usr>> listAll() {
+    public ResponseEntity<List<Usr>> listAll(){
         List<Usr> usrs = usrService.findAll();
         if (usrs.isEmpty()) {
             return new ResponseEntity<List<Usr>>(HttpStatus.NO_CONTENT);
@@ -56,8 +57,8 @@ public class UsrRestController {
      * @param ucBuilder
      * @return
      */
-    @RequestMapping(value = "/usrs", method = RequestMethod.POST)
-    public ResponseEntity<Void> create(@RequestBody Usr usr, UriComponentsBuilder ucBuilder) {
+    @RequestMapping(value = "/signUp/usrs", method = RequestMethod.POST)
+    public ResponseEntity<Void> create(Usr usr, UriComponentsBuilder ucBuilder) {
         if (usrService.isExist(usr)) {
             return new ResponseEntity<Void>(HttpStatus.CONFLICT);
         }
@@ -74,9 +75,9 @@ public class UsrRestController {
      * @return
      */
     @RequestMapping(value = "/usrs/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Usr> update(@PathVariable("id") String id, @RequestBody Usr usr) {
+    public ResponseEntity<Usr> update(@PathVariable("id") String id, Usr usr) {
         Usr oldUsr = usrService.findById(id);
-        if (oldUsr == null) {
+        if (oldUsr==null) {
             return new ResponseEntity<Usr>(HttpStatus.NOT_FOUND);
         }
         oldUsr.setName(usr.getName());
